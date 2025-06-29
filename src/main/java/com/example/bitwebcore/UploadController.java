@@ -27,7 +27,7 @@ public class UploadController {
         String filename = file.getOriginalFilename();
         String content = new String(file.getBytes(), StandardCharsets.UTF_8);
 
-        System.out.println(id + ": " + content);
+        System.out.println("Received file from frontend: " + id + "(" + filename + ")");
 
         // Save
         UploadMetadata metadata = new UploadMetadata(id, filename, "processing");
