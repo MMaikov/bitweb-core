@@ -30,11 +30,9 @@ public class UploadController {
         System.out.println("Received file from frontend: " + id + "(" + filename + ")");
 
         // Save
-        UploadMetadata metadata = new UploadMetadata(id, filename, "processing");
-        metadataRepository.save(metadata);
+        metadataRepository.save(new UploadMetadata(id, filename, "processing"));
 
-        TextUploadMessage message = new TextUploadMessage(id, filename, content);
-        rabbitMQSender.send(message);  // <-- Send to RabbitMQ
+        rabbitMQSender.send(new TextUploadMessage(id, filename, content));  // <-- Send to RabbitMQ
 
         return ResponseEntity.ok(id);
     }
